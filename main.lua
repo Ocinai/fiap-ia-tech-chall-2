@@ -11,10 +11,17 @@ function love.load()
 
     math.randomseed(os.time())
 
-    rocket = Rocket()
-    pop = Population(50)
+    background = love.graphics.newImage('assets/background-space.png')
+    moon = love.graphics.newImage('assets/moon.png')
+    love.window.setTitle('Moon Crasher')
+
+    scaleX = 80 / moon:getWidth()
+    scaleY = 80 / moon:getHeight()
+
+    love.window.setMode(background:getWidth(), background:getHeight())
     target = Vector.new(love.graphics.getWidth() / 2, 50)
     gen = 1
+    pop = Population(50)
 end
 
 function love.update(dt)
@@ -22,8 +29,10 @@ function love.update(dt)
 end
 
 function love.draw()
-    love.graphics.setBackgroundColor(0, 0, 0)
-    love.graphics.circle('fill', target.x, target.y, 18, 18)
+    love.graphics.setColor(1, 1, 1, 0.7)
+    love.graphics.draw(background, 0, 0)
+    love.graphics.setColor(1, 1, 1, 1)
+    love.graphics.draw(moon, target.x - 36, target.y - 36, 0, scaleX, scaleY)
     count = count + 1
     pop:run(count)
 
@@ -37,6 +46,6 @@ function love.draw()
     love.graphics.setColor(1, 1, 1)
     love.graphics.setFont(love.graphics.newFont(16))
     love.graphics.print("Gen: " .. tostring(gen))
-   -- love.graphics.print("Best Fit: " .. tostring(pop.bestFit), 0, 20)
+    love.graphics.print("Best Fit: " .. tostring(pop.totalFitness), 0, 20)
 
 end

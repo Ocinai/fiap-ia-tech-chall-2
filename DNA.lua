@@ -18,11 +18,17 @@ function DNA:crossover(partner)
         if i < cutoff then
             table.insert(genes, self.genes[i])
         else
-            table.insert(genes, partner[i])
+            table.insert(genes, partner.genes[i])
         end
     end
     return DNA(genes)
+end
 
-
-
+function DNA:mutate()
+    local mutationRate = 0.01
+    for i = 1, #self.genes do
+        if math.random() < mutationRate then
+            self.genes[i] = Vector.randomDirection(0.25)
+        end
+    end
 end

@@ -12,6 +12,9 @@ function Rocket:init(dna)
     end
     self.count = 1
     self.fitness = 0
+    self.img = love.graphics.newImage('assets/rocket.png')
+    self.scaleX = 50 / self.img:getWidth()
+    self.scaleY = 50 / self.img:getHeight()
 end
 
 function Rocket:applyForce(force)
@@ -38,12 +41,30 @@ end
 function Rocket:render()
     love.graphics.push()
     love.graphics.translate(self.pos.x, self.pos.y)
-    love.graphics.rotate(math.atan2(self.vel.y, self.vel.x))
-    love.graphics.setColor(1, 1, 1, 150/255)
-    love.graphics.rectangle('fill', 0, 0, 25, 5)
+    love.graphics.rotate(math.atan2(self.vel.y, self.vel.x))   
+    love.graphics.setColor(1, 1, 1) 
+    love.graphics.draw(self.img, 0, 0, 0, self.scaleX, self.scaleY)
     love.graphics.pop()
 end
 
 function map(value, in_min, in_max, out_min, out_max)
     return (value - in_min) * (out_max - out_min) / (in_max - in_min) + out_min
+end
+
+
+function dottedLine(x1, y1, x2, y2, size, interval)
+    size = size or 5
+    interval = interval or 2
+
+    dx = (x1-x2)*(x1-x2)
+    dy = (y1-y2)*(y1-y2)
+    length = math.sqrt(dx+dy)
+    t = size/interval
+
+    for i = 1, math.floor(length/size) do
+        if i % interval == 0 then
+            love.graphics.line(x1+t*(i-1)*(x2-x1), y1+t*(i-1)*(y2-y1),
+                               x1+t*i*(x2-x1), y1*t*i*(y2-y1))
+        end
+    end
 end

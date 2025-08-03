@@ -4,6 +4,7 @@ function Population:init(popSize)
     self.rockets = {}
     self.mattingPool = {}
     self.bestFit = 0
+    self.totalFitness = 0
 
     for i = 1, popSize do
         rocket = Rocket()
@@ -29,12 +30,15 @@ function Population:evaluate()
         totalFit = totalFit + rocket.fitness
         if rocket.fitness > maxFit then
             maxFit = rocket.fitness
+            self.bestFit = maxFit
         end
     end
 
-    for i, rocket in ipairs(self.rockets) do
-        rocket.fitness = rocket.fitness / maxFit
+    local totalFitness = 0
+    for _, rocket in ipairs(self.rockets) do
+        totalFitness = totalFitness + rocket.fitness
     end
+
 
     self.mattingPool = {}
     for i, rocket in ipairs(self.rockets) do
@@ -46,22 +50,37 @@ function Population:evaluate()
 end
 
 function Population:selection()
-    newRockets = {}
-    idx = 1
-    for i, rocket in ipairs(self.rockets) do
-        if #self.mattingPool > 0 then
-            idx = math.random(1, #self.mattingPool)
-            parent1 = self.mattingPool[idx].dna
-            idx = math.random(1, #self.mattingPool)
-            parent2 = self.mattingPool[idx].dna
-            gene = parent1:crossover(parent2)
-            
-            table.insert(newRockets, Rocket(c))
+    local newRockets = {}
+
+    local bestRocket = nil
+    local bestFitness = -math.huge
+    for _, rocket in ipairs(self.rockets) do
+        if rocket.fitness > bestFitness then
+            bestFitness = rocket.fitness
+            bestRocket = rocket
         end
-    
     end
+    table.insert(newRockets, Rocket(bestRocket.dna))
+
+    for i = 2, #self.rockets do
+        local parent1 = self:selectParent()
+        local parent2 = self:selectParent()
+        local childDNA = parent1:crossover(parent2)
+        childDNA:mutate()
+        table.insert(newRockets, Rocket(childDNA))
+    end
+
     self.rockets = newRockets
-    if #self.rockets == #newRockets then
-        print("Opaaa  ")
+end
+
+function Population:selectParent()
+    local r = math.random() * self.totalFitness
+    local index = 1
+
+    while r > 0 and index <= #self.rockets do
+        r = r - self.rockets[index].fitness
+        index = index + 1
     end
+
+    return self.rockets[math.max(index - 1, 1)].dna
 end
