@@ -8,7 +8,6 @@ require 'DNA'
 count = 0
 
 function love.load()
-
     math.randomseed(os.time())
 
     background = love.graphics.newImage('assets/background-space.png')
@@ -49,5 +48,4 @@ function love.draw()
     love.graphics.setFont(love.graphics.newFont(16))
     love.graphics.print("Gen: " .. tostring(gen))
     love.graphics.print("Best Fit: " .. string.format("%.4f", pop.totalFitness), 0, 20)
-    love.graphics.print("Rockets Amt: " .. string.format("%d", pop.rocketCrashed), 0, 40)
 end

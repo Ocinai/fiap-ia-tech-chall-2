@@ -83,7 +83,9 @@ function Population:update(target)
         if d < 60 and not rocket.completed then
             rocket.completed = true
             self.rocketCrashed = self.rocketCrashed + 1
-            self.pos = target:clone()
+            rocket.audio:play()
+            rocket.pos = target:clone()
+            rocket.vel = rocket.vel * 0
         end
     end
 end
