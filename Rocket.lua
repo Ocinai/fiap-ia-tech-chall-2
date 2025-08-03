@@ -15,6 +15,9 @@ function Rocket:init(dna)
     self.img = love.graphics.newImage('assets/rocket.png')
     self.scaleX = 50 / self.img:getWidth()
     self.scaleY = 50 / self.img:getHeight()
+    self.w = self.img:getWidth()
+    self.h = self.img:getHeight()
+    self.completed = false
 end
 
 function Rocket:applyForce(force)
@@ -24,8 +27,8 @@ end
 function Rocket:update(cnt)
     self.count = cnt
     self:applyForce(self.dna.genes[self.count])
-    self.vel = self.vel + self.acc      
-    self.pos = self.pos + self.vel     
+    self.vel = self.vel + self.acc
+    self.pos = self.pos + self.vel   
     self.acc = self.acc * 0
 end
 
@@ -43,7 +46,7 @@ function Rocket:render()
     love.graphics.translate(self.pos.x, self.pos.y)
     love.graphics.rotate(math.atan2(self.vel.y, self.vel.x))   
     love.graphics.setColor(1, 1, 1) 
-    love.graphics.draw(self.img, 0, 0, 0, self.scaleX, self.scaleY)
+    love.graphics.draw(self.img, 0, 0, 0, self.scaleX, self.scaleY, self.w / 2, self.h / 2)
     love.graphics.pop()
 end
 

@@ -25,7 +25,7 @@ function DNA:crossover(partner)
 end
 
 function DNA:mutate()
-    local mutationRate = 0.01
+    local mutationRate = 0.5
     for i = 1, #self.genes do
         if math.random() < mutationRate then
             self.genes[i] = Vector.randomDirection(0.25)
