@@ -5,5 +5,5 @@
 ]]--
    
 function love.conf(t)
-  t.console = fakse
+  t.console = false
 end

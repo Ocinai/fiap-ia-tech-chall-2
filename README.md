@@ -1,6 +1,6 @@
 ### 🚀 Smart Rockets - Algoritmos Genéticos com LOVE2D
 
-Este projeto demonstra como **algoritmos genéticos** podem ser usados para ensinar foguetes (rockets) a **alcançar um alvo** por conta própria, apenas com tentativa, erro, e evolução. Tudo isso utilizando **LOVE2D (Lua)** para renderização e simulação física.
+Este projeto demonstra como **algoritmos genéticos** podem ser usados para ensinar foguetes  a **alcançar um alvo** por conta própria, apenas com tentativa, erro, e evolução. Tudo isso utilizando **LOVE2D (Lua)** para renderização e simulação física.
 
 ---
 
@@ -29,7 +29,11 @@ Este projeto é uma **simulação didática**, mas representa problemas reais em
 
 ## 🔧 Como Rodar
 
-- Faça o download do zip de release no repositorio, extraia e execute o mooncrasher.exe.
+- Clone o repositório:
+  ```bash
+  git clone https://github.com/Ocinai/fiap-ia-tech-chall-2
+  ```
+- Abra a pasta dist e execute o arquivo moon-crasher.exe
 
 #### Como alternativa
 

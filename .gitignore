@@ -30,13 +30,11 @@ luac.out
 *.exp
 
 # Shared objects (inc. Windows DLLs)
-*.dll
 *.so
 *.so.*
 *.dylib
 
 # Executables
-*.exe
 *.out
 *.app
 *.i*86
@@ -67,5 +65,6 @@ luac.out
 *.pdf
 *.love
 *.bat
+*.docx
 
 # End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,lua
