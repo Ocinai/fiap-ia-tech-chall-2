@@ -1,3 +1,10 @@
+--[[
+    Author: Inacio Ribeiro - RM362328
+    FIAP - IA para devs
+    Algoritimos Geneticos
+]]--
+
+
 DNA = Class {}
 
 function DNA:init(genes)

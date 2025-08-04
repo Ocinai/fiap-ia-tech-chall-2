@@ -63,4 +63,9 @@ luac.out
 .history
 .ionide
 
+### Other files
+*.pdf
+*.love
+*.bat
+
 # End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,lua

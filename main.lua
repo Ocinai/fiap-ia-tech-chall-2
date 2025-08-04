@@ -1,3 +1,9 @@
+--[[
+    Author: Inacio Ribeiro - RM362328
+    FIAP - IA para devs
+    Algoritimos Geneticos
+]]--
+
 Class = require 'libs.class'
 Vector = require 'libs.vector'
 
@@ -12,7 +18,10 @@ function love.load()
 
     background = love.graphics.newImage('assets/background-space.png')
     moon = love.graphics.newImage('assets/moon.png')
+    icon = love.image.newImageData('assets/icon.png')
+
     love.window.setTitle('Moon Crasher')
+    love.window.setIcon(icon)
 
     scaleX = 100 / moon:getWidth()
     scaleY = 100 / moon:getHeight()

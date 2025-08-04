@@ -1,3 +1,8 @@
+--[[
+    Author: Inacio Ribeiro - RM362328
+    FIAP - IA para devs
+    Algoritimos Geneticos
+]]--
 
 Rocket = Class {}
 
@@ -30,7 +35,7 @@ function Rocket:update(cnt)
     self.count = cnt
     self:applyForce(self.dna.genes[self.count])
     self.vel = self.vel + self.acc
-       self.pos = self.pos + self.vel   
+    self.pos = self.pos + self.vel   
     self.acc = self.acc * 0
 
     table.insert(self.trail, self.pos:clone())
@@ -54,11 +59,6 @@ function Rocket:render()
     love.graphics.draw(self.img, 0, 0, 0, self.scaleX, self.scaleY, self.w / 2, self.h / 2)
     love.graphics.pop()
 end
-
-function map(value, in_min, in_max, out_min, out_max)
-    return (value - in_min) * (out_max - out_min) / (in_max - in_min) + out_min
-end
-
 
 function dottedLine(x1, y1, x2, y2, dashLength, gap)
     dashLength = dashLength or 5

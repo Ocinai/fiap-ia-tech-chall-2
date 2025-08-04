@@ -1,3 +1,9 @@
+--[[
+    Author: Inacio Ribeiro - RM362328
+    FIAP - IA para devs
+    Algoritimos Geneticos
+]]--
+
 Population = Class {}
 
 function Population:init(popSize)
